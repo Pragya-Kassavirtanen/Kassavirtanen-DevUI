@@ -1,0 +1,587 @@
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'variables';
+
+body {
+  background: #fff;
+}
+
+// Disable IE input 'X'
+input[type=text]::-ms-clear {
+  display: none;
+}
+
+.dashboard {
+
+  &-expense {
+    width: 100% !important;
+  }
+
+  &-salary {
+    &-header {
+      font-size: 15px;
+      color: black;
+      font-weight: bold;
+    }
+  }
+
+  &-content {
+
+    &-mainpanel {
+      margin-left: 0;
+    }
+
+    &-container {
+      height: 100%;
+    }
+
+    &-header {
+
+      margin: 0 85px;
+      height: 100%;
+
+      h1 {
+        float: left;
+        margin-left: 10px;
+        padding-top: 25px;
+      }
+
+      ul {
+        margin-right: 15px;
+        padding-top: 50px;
+      }
+
+      li:first-child {
+        margin-right: 15px;
+      }
+
+      hr {
+        border-color: $main-color;
+        border-width: 1.5px;
+      }
+
+      &-select-customer {
+        margin-top: 25px;
+        margin-right: 20px;
+
+      }
+    }
+
+    &-bottom {
+      margin: 0 100px;
+    }
+  }
+
+  &-tax {
+    &-input {
+      color: $input-color;
+      border-bottom: 1px dashed $input-color;
+      display: none;
+    }
+
+    &-description {
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    &-content {
+      margin-top: 50px;
+    }
+
+    &-address {
+      margin-left: 15px;
+      p {
+        line-height: 50%;
+      }
+    }
+
+    &-yel {
+      font-weight: bold;
+      margin-top: 20px;
+      margin-left: 5px;
+    }
+  }
+
+  &-header {
+
+    &-brand {
+      width: 50%;
+    }
+
+    &-top {
+      width: 55%;
+      background-color: $main-color;
+      border-color: $main-color;
+      color: $white-color;
+      font-family: $font-family-open-sans;
+      font-weight: 600;
+      padding: 6px;
+      float: right;
+
+      > li {
+        margin: 0 10px;
+      }
+    }
+
+    &-emptytop {
+      width: 45%;
+      background-color: $main-color;
+      border-color: $main-color;
+      padding: 5px;
+      float: left;
+      border-right: 2px solid white;
+
+      &:after {
+        content: '.';
+        color: $main-color;
+      }
+    }
+
+    &-bottom {
+      background-color: $white-color;
+      border-bottom: 1.5px solid $main-color;
+
+      > .panel {
+        margin-left: -10px;
+      }
+    }
+
+    &-insecure {
+      background-color: $white-color;
+      border-bottom: 1.5px solid $main-color;
+
+      nav {
+        margin-left: 25px;
+      }
+
+      ul {
+        margin-right: 50px;
+      }
+    }
+  }
+
+  &-nav {
+
+    &-top {
+      float: left;
+    }
+
+    &-links {
+      width: 100%;
+      text-align: center;
+      margin-right: 21px;
+      font-size: small;
+    }
+
+    &-brand {
+      width: 50%;
+      height: 50%;
+      margin-right: 15px;
+      float: left;
+    }
+
+    &-linklist {
+      color: $main-color;
+    }
+
+    &-icon {
+      font-family: $font-family-open-sans;
+      font-weight: 600;
+      text-align: center;
+      padding: 5px 10px 1px 10px;
+      background-color: $main-color;
+      color: $white-color;
+    }
+
+    &-right {
+      margin-right: 10px;
+      margin-top: 1.5px;
+      float: right;
+    }
+
+    &-left {
+      margin-right: 10px;
+      margin-top: 1.5px;
+      float: left;
+    }
+  }
+
+  &-admin {
+    &-textfield {
+      margin: 5px;
+    }
+    &-hover-row:hover {
+      background-color: #cccccc;
+      -webkit-transition: width 2s; /* Safari */
+      transition: background-color 0.5s;
+    }
+  }
+
+  &-invoice {
+
+    margin: 0 85px;
+    height: 100%;
+
+    &-info {
+      &-half {
+        float: left;
+        width: 50%;
+        [name="overdue"] {
+          width: 100% !important;
+        }
+        [type="button"] {
+          display: none !important;
+        }
+      }
+    }
+
+    &-inputrow {
+      border-bottom: 0 !important;
+    }
+
+    &-add {
+      margin-top: 25px;
+    }
+
+    &-sum {
+      font-size: medium;
+      padding: 0;
+    }
+
+  }
+
+  &-footer {
+
+    background-color: $main-color;
+    margin-top: 50px;
+    padding-top: 50px;
+    padding-bottom: 25px;
+
+    &-info {
+
+      margin-top: -25px;
+      margin-left: 100px;
+      margin-right: 100px;
+
+      a {
+        color: white;
+
+        &:hover {
+          color: #000000;
+          text-decoration: none;
+        }
+      }
+
+      h3 {
+        color: $white-color;
+        font-weight: 700;
+        margin-top: 0;
+      }
+
+      h5 {
+        color: $white-color;
+        font-weight: 600;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 5px;
+        margin: auto;
+      }
+
+      li {
+        margin: $margin-auto;
+        font-size: 12px;
+        color: #ffffff;
+      }
+
+      &-title {
+        font-weight: bold;
+      }
+    }
+
+    &-some {
+
+      margin: 25px 0;
+
+      ul {
+        width: 20%;
+        margin: auto;
+      }
+    }
+    &-sign {
+      color: $white-color;
+      font-size: xx-small;
+      font-weight: 600;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      p {
+        margin-bottom: -15px;
+      }
+    }
+  }
+
+  &-input-wrapper>input {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+  }
+}
+
+// overriding nav-tabs
+.nav {
+  > li {
+    > a {
+
+      font-family: $font-family-open-sans;
+      font-weight: 600;
+      text-align: center;
+      padding: 5px 5px 0 5px;
+
+      &:hover,
+      &:focus {
+        color: $white-color;
+        background-color: $main-color;
+      }
+    }
+  }
+}
+
+// Overriding panel colors
+
+.panel {
+  > .panel-heading {
+    background-image: none;
+    background-color: $main-color;
+    color: $white-color;
+  }
+
+  &-register {
+    margin: auto;
+    max-width: 470px;
+    width: 50%;
+    min-width: 300px;
+    text-align: center;
+  }
+
+  > .panel-body {
+    position: relative;
+
+    ul {
+      padding-top: 0;
+    }
+
+    li:first-child {
+      margin-right: 15px;
+    }
+
+    li {
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    ul.pagination {
+      float: right;
+      position: relative;
+      margin-top: 20px;
+      list-style-type: none;
+    }
+
+    ul.pagination li {
+      float: left;
+      text-align: center;
+      background-color: #ffffff;
+      margin-right: 0;
+      width: 30px;
+      line-height: 30px;
+      color: $main-color;
+      display: block;
+    }
+
+    ul.pagination li:hover {
+      cursor: pointer;
+    }
+
+    ul.pagination li a {
+      display: block;
+    }
+
+    ul.pagination > .active {
+      position: relative;
+      list-style-type: none;
+      border-radius: 3px;
+      background-color: $main-color;
+    }
+
+  }
+
+  .divider {
+    margin-top: 15px;
+    display: flex;
+  }
+
+  .button-pull {
+    float: right;
+
+    @media screen and (max-width: 900px) {
+      position: relative;
+      width: 100%;
+      display: inline-grid;
+      bottom: 0;
+    }
+  }
+
+  .formSplit {
+    margin-right: 30px;
+    display: inline-grid;
+  }
+
+  > .panel-footer {
+    background-image: none;
+    background-color: $main-color;
+    color: $white-color;
+
+    p {
+      text-align: center;
+      font-weight: 600;
+      font-size: x-small;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    &.is-plain {
+      background-color: white;
+      border-top: transparent;
+    }
+  }
+}
+
+.header {
+
+  &-container {
+    margin: 10px 0;
+    overflow: hidden;
+  }
+
+  &-home {
+    font-size: 40px;
+    color: $home-link-color;
+  }
+
+  &-nav {
+    &-right {
+      margin-right: 50px;
+      margin-top: 25px;
+    }
+  }
+}
+
+.header-lined {
+  display: flex;
+}
+
+.form {
+
+  &-login {
+
+    &-container {
+      margin-top: 50px;
+      margin-bottom: -125px;
+    }
+
+    &-content {
+      display: block;
+      text-align: center;
+      width: 400px;
+      margin: 0 auto;
+      height: 420px;
+    }
+
+    &-checkbox {
+      text-align: left;
+      margin-left: 50px;
+      margin-top: 10px;
+    }
+
+    &-button {
+      text-align: right;
+      margin-right: 56px;
+      margin-top: 15px;
+    }
+
+    &-register {
+
+      display: block;
+      text-align: center;
+      width: 400px;
+      margin: 50px 0 auto;
+      height: 50px;
+      padding-bottom: 10px;
+    }
+  }
+
+  &-register {
+
+    &-container {
+      margin-top: 100px;
+    }
+
+    &-content {
+      display: block;
+      text-align: center;
+      width: 400px;
+      margin: 0 auto;
+      height: 550px;
+    }
+
+    &-btn {
+      text-align: right;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    &-button {
+      width: 260px;
+    }
+
+    &-checkbox {
+      text-align: left;
+      margin-left: 50px;
+      margin-top: 15px;
+    }
+
+    &-oauth {
+      margin-top: 5px;
+    }
+
+    &-image {
+      width: 260px;
+      height: auto;
+    }
+  }
+
+  &-hr {
+    border-top: 4px double $hr-login-color;
+    text-align: center;
+
+    &-before {
+      width: 260px;
+      margin: 0 auto;
+    }
+
+    &:after {
+      content: 'tai';
+      display: inline-block;
+      position: relative;
+      top: -15px;
+      padding: 0 10px;
+      background: $white-color;
+      color: $hr-login-color;
+      font-size: 18px;
+      font-family: $font-family-open-sans;
+    }
+  }
+}
