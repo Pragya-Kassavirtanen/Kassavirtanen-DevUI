@@ -6,7 +6,8 @@ import {
   REMOVE_CUSTOMER,
   GET_CUSTOMER_BY_ID_SUCCESS,
   SAVE_CUSTOMER_UPDATE,
-  CANCEL_CUSTOMER_UPDATE
+  CANCEL_CUSTOMER_UPDATE,
+  ADD_NEW_CUSTOMER_INVOICE_SUCCESS
 } from '../constants'
 
 const customerReducer = (
@@ -93,6 +94,16 @@ const customerReducer = (
           isEdit: false
         }
       )
+
+    case ADD_NEW_CUSTOMER_INVOICE_SUCCESS:
+    console.log('ADD_NEW_CUSTOMER_INVOICE_SUCCESS result::      ', action.result)
+    return Object.assign(
+      {},
+      { ...state },
+      {
+        customerEdit: action.result                                           
+      }
+    )
 
     default:
       return state

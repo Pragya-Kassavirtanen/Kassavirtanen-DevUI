@@ -8,7 +8,8 @@ import {
   updateCustomer,
   getCustomerByIdSuccess,
   saveCustomerUpdate,
-  cancelCustomerUpdate
+  cancelCustomerUpdate,
+  addNewCustomerInvoice
 } from '../../actions/index'
 
 import { customerValidate as validate } from '../validate'
@@ -22,7 +23,7 @@ let CustomerContainer = reduxForm({
   initialValues: {
     country: 'Suomi',
     delivery_method: ''
-  },
+  },  
   enableReinitialize : true,
   validate
 })(CustomerComponent)
@@ -52,7 +53,8 @@ const mapDispatchToProps = dispatch => {
     updateCustomer: customer_id => dispatch(updateCustomer(customer_id)),
     getCustomerByIdSuccess: result => dispatch(getCustomerByIdSuccess(result)),
     saveCustomerUpdate: customer_id => dispatch(saveCustomerUpdate(customer_id)),
-    cancelCustomerUpdate: customer_id => dispatch(cancelCustomerUpdate(customer_id))
+    cancelCustomerUpdate: customer_id => dispatch(cancelCustomerUpdate(customer_id)),
+    addNewCustomerInvoice: customer_id => dispatch(addNewCustomerInvoice(customer_id))
   }
 }
 

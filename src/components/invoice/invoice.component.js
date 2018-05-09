@@ -59,11 +59,11 @@ const NewInvoice = ({
   invoicePages,
   invoicePageChange,
   addInvoiceRow,
-  invalid,
+ // invalid,
   handleSubmit,
   changeInvoiceBillingDate,
   customers,
-  selectInvoiceCustomer,
+  selectInvoiceCustomer, 
   dispatch
 }) =>
   <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -99,7 +99,7 @@ const NewInvoice = ({
                  floatingLabelText="Asiakas"
                  style={{'marginTop': '25px', 'marginRight': '20px'}}
                  maxHeight={200}
-                 onChange={(e, i) => i >= 0 ? selectInvoiceCustomer(customers.filter(el => (i === el.id)).pop()) : dispatch(reset('invoice'))}>
+                 onChange={(e, i) => i >= 0 ? selectInvoiceCustomer(customers.filter(el => (i === el.customer_id)).pop()) : dispatch(reset('invoice'))}>
             {_createCustomerMenuItems(customers)}
           </Field>
         </div>
@@ -146,15 +146,16 @@ const NewInvoice = ({
               <div className="panel panel-default">
                 <div className="panel-body">
                   <div className="pull-right">
-                    { invalid
+                    {/*{ invalid
                       ? <RaisedButton label="Esikatsele ja hyväksy lasku"
                                       primary={true}
-                                      type="submit"/>
-                      : <RaisedButton label="Esikatsele ja hyväksy lasku"
+                    type="submit"/>: */}   
+                      
+                      <RaisedButton label="Esikatsele ja hyväksy lasku"
                           primary={true}
                           type="submit"
                           containerElement={<Link to="/dashboard/invoice/review"/>}/>
-                    }
+                  {/* } */}
                   </div>
                 </div>
               </div>
@@ -226,7 +227,7 @@ const invoiceDeliveryMethod = (invoiceItems) =>
                label="Postitoimipaikka"/>
       </div>
       <div>
-        <Field name="finvoice_address" component={renderTextField}
+        <Field name="web_invoice" component={renderTextField}
                label="Verkkolaskuosoite"/>
       </div>
     </div>
@@ -333,8 +334,8 @@ const createdInvoiceRows = (invoiceRows, invoicePages, invoicePageChange) =>
 
 const _createCustomerMenuItems = (customers) =>
   customers.map(c =>
-    <MenuItem key={c.id}
-              value={c.id}
+    <MenuItem key={c.customer_id}
+              value={c.customer_id}
               primaryText={c.company_name}/>
   )
 

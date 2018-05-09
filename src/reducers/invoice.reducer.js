@@ -13,7 +13,8 @@ import {
   COPY_INVOICE_SUCCESS,
   INVOICE_PAGE_CHANGE,
   EMPTY_INVOICE_ROWS,
-  CHANGE_INVOICE_BILLING_DATE
+  CHANGE_INVOICE_BILLING_DATE,
+  GET_INVOICE_BY_ID_SUCCESS
 } from '../constants'
 import { SESSION_TERMINATED, USER_EXPIRED } from 'redux-oidc'
 import { getFormValues } from 'redux-form'
@@ -46,7 +47,8 @@ const initialState  = {
   invoiceRows: [],
   apiInvoices: [],
   invoices: [],
-  selected: 0
+  selected: 0,
+  invoiceEdit: []
 }
 
 const invoiceReducer = (state = initialState, action) => {
@@ -58,11 +60,23 @@ const invoiceReducer = (state = initialState, action) => {
       return Object.assign({}, {...state}, {invoiceRows: []})
 
     case GET_INVOICES_SUCCESS:
+    //console.log('Inside GET_INVOICES_SUCCESS:: ', action.invoices)
+    //console.log('Inside GET_INVOICES_SUCCESS:: ', action.customerResult)
       return Object.assign({}, {...state}, {
-        invoiceRows: _createInvoiceRow(action.invoices, state.selected),
-        invoices: action.invoices,
-        customers: action.customerResult.data
+        invoices: JSON.parse(action.invoices),
+        invoiceRows: _createInvoiceRow(JSON.parse(action.invoices), state.selected),        
+        customers: JSON.parse(action.customerResult)
       })
+
+      case GET_INVOICE_BY_ID_SUCCESS:
+      console.log('result:: ', action.result)
+      return Object.assign(
+        {},
+        { ...state },
+        {
+          invoiceEdit: JSON.parse(action.result)                          
+        }
+      )
 
     case CALCULATE_INVOICE_SUM:
       return Object.assign( {}, state, {
@@ -85,8 +99,8 @@ const invoiceReducer = (state = initialState, action) => {
 
     case REMOVE_INVOICE:
       return Object.assign( {}, state,  {
-        invoices: state.invoices.filter((el) => el.id !== action.id),
-        invoiceRows: _createInvoiceRow(state.invoices.filter((el) => el.id !== action.id), state.selected)
+        invoices: state.invoices.filter((el) => el.invoice_id !== action.invoice_id),
+        invoiceRows: _createInvoiceRow(state.invoices.filter((el) => el.invoice_id !== action.invoice_id), state.selected)
       })
 
     case COPY_INVOICE_SUCCESS:
@@ -203,7 +217,7 @@ const _calculateRowSum = rowNumber => {
   formValues['rows'][rowNumber]['vat_percent_description'] = `${formValues['rows'][rowNumber]['vat_percent']} %`
 }
 
-const _createInvoiceRow = (invoices, selected) => invoices.slice((selected*10), (selected*10) + 10).map(el => <InvoiceRow key={el.id}
+const _createInvoiceRow = (invoices, selected) => invoices.slice(selected*10, selected*10 + 10).map(el => <InvoiceRow key={el.invoice_id}
                                                                        billing_date={new DateTimeFormat('fi', {
                                                                          day: 'numeric',
                                                                          month: 'numeric',
@@ -218,7 +232,7 @@ const _createInvoiceRow = (invoices, selected) => invoices.slice((selected*10), 
 
                                                                        customer={el.company_name}
 
-                                                                       invoice_id={el.id}
+                                                                       invoice_id={el.invoice_id}
 
                                                                        totalSumWithVAT={new Intl.NumberFormat('fi-FI', {
                                                                          style: 'currency',
@@ -227,7 +241,7 @@ const _createInvoiceRow = (invoices, selected) => invoices.slice((selected*10), 
 
                                                                        instant_payment={el.instant_payment}
 
-                                                                       state={el.state}
+                                                                       state={el.status}
                                                                        
                                                                        functions=""/>)
 

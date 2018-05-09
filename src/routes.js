@@ -5,8 +5,6 @@ import { UserAuthWrapper } from 'redux-auth-wrapper'
 
 import store from './store'
 import Main from './containers/main.container'
-//import Login from './containers/login.container'
-
 import Login from './components/account/login.component'
 
 import Register from './containers/register.container'
@@ -25,7 +23,6 @@ import NewAllowance from './containers/expenses/newAllowance.container'
 import Admin from './containers/admin/admin.container'
 
 
-
 /**
  * TODO: Describe me
  *
@@ -42,6 +39,7 @@ const isUserAuthenticated = UserAuthWrapper({
   wrapperDisplayName: 'isUserAuthenticated'
 })
 
+
 export default class RouteComponent extends React.Component {
 
   render () {
@@ -54,6 +52,9 @@ export default class RouteComponent extends React.Component {
           <Route path="/dashboard/callback" component={Callback}/>
           <Route path="/dashboard/main" component={isUserAuthenticated(Dashboard)} />
           <Route path="/dashboard/invoice" component={isUserAuthenticated(Invoice)}/>
+
+          <Route path="/dashboard/invoice/:customer_id" component={isUserAuthenticated(Invoice)} />       
+
           <Route path="/dashboard/invoice/review" components={isUserAuthenticated(ReviewInvoice)}/>
           <Route path="/dashboard/salary" component={isUserAuthenticated(Salary)}/>
           <Route path="/dashboard/customer" components={isUserAuthenticated(Customer)}/>

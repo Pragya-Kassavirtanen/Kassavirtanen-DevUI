@@ -11,7 +11,9 @@ import {
   getInvoicesStart,
   onInvoiceReview,
   invoicePageChange,
-  changeInvoiceBillingDate
+  changeInvoiceBillingDate,
+  editInvoice,
+  getInvoiceByIdSuccess
 } from '../../actions'
 import DateTimeFormat from '../../utils/DateTimeFormat'
 import {
@@ -70,7 +72,7 @@ let NewInvoiceContainer = reduxForm({
       year: 'numeric'
     }).format(date.setDate(date.getDate() + 14)),
     instant_payment: false
-  },
+  },  
   validate
 })(NewInvoice)
 
@@ -137,7 +139,7 @@ const mapStateToProps = (state) => {
     user: state.oidc.user,
     invoiceInputRows: invoiceInputRows,
     invoiceRows: state.invoice.invoiceRows,
-    customers: state.invoice.customers,
+    customers: state.invoice.customers,   
     countryItems,
     invoiceItems,
     overdueItems,
@@ -167,7 +169,9 @@ const mapDispatchToProps = (dispatch) => {
     onInvoiceReview: () => dispatch(onInvoiceReview()),
     invoicePageChange: selected => dispatch(invoicePageChange(selected)),
     changeInvoiceBillingDate: date => dispatch(changeInvoiceBillingDate(date)),
-    selectInvoiceCustomer: customer => Object.keys(customer).forEach(key => dispatch(change('invoice', key, customer[key])))
+    selectInvoiceCustomer: customer => Object.keys(customer).forEach(key => dispatch(change('invoice', key, customer[key]))),
+    editInvoice: invoice_id => dispatch(editInvoice(invoice_id)),
+    getInvoiceByIdSuccess: result => dispatch(getInvoiceByIdSuccess(result))
   }
 }
 

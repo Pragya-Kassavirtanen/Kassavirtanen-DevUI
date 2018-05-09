@@ -13,13 +13,21 @@ import {
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
+export default class InvoiceEdit extends React.Component {  
+
+  render() {
+    return <InvoiceEditComponent { ...this.props }/>
+  }
+
+}
+
 const _createMenuItems = menuItems =>
   menuItems.map((item, index) => <MenuItem key={index} value={item} primaryText={item}/>)
 
 const customers = [ 'Yksi', 'Kaksi', 'Kolme' ]
 const customerList = _createMenuItems(customers)
 
-const InvoiceEdit = ({}) =>
+const InvoiceEditComponent = ({}) =>
   <MuiThemeProvider muiTheme={getMuiTheme()}>
     <div className="container-fluid">
       <div className="row">
@@ -127,5 +135,3 @@ const InvoiceEdit = ({}) =>
       </div>
     </div>
   </MuiThemeProvider>
-
-export default InvoiceEdit

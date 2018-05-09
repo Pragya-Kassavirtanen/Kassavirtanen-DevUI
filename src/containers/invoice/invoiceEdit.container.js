@@ -15,6 +15,7 @@ let InvoiceEditContainer = reduxForm({
 const mapStateToProps = state => {
   return {
     state
+    //location: {location}
   }
 }
 
